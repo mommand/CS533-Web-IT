@@ -1,26 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Upload News</title>
-	<?php
-		include('asset.php');
-		include('db_connect.php');
-		session_start();
-	?>
-</head>
-<body>
+<?php
+include('db_connect.php');
+include('asset.php');
+mysqli_select_db($conn, 'news');
+$id = $_GET['id'];
+$fetch_rec = "SELECT * FROM news WHERE id = $id";
+ if ($rq = mysqli_query($conn, $fetch_rec)) {
+ 	
+ 	$rec = mysqli_fetch_assoc($rq);
+
+ }
+?>
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="row">
 				<div class="page-header">
 					<h4 class="text-center">
-						Publish your news!
+						Edit your news!
 					</h4>
 				</div>
 				<a href="shownews.php" class="btn btn-primary pull-right">Show News</a>
 			</div>
-			<form action="newsController.php" method="post">
+			<form action="UpdatenewsController.php" method="post">
 				<div class="row form-group">
 					<?php
 					if (isset($_SESSION['success'])) {
@@ -36,37 +37,14 @@
 					
 					<div class="col-md-6">
 						<label>Title</label>
-						<input type="text" name="title" class="form-control">
-						<?php
-						 if (isset($_SESSION['error'])) {
-						 	?>
-						 	 <p class="text-danger">
-						 	 	<?php 
-						 	 	echo $_SESSION['error'];
-						 	 	unset($_SESSION['error']); 
-						 	 	?>
-						 	 </p>
-						 	<?php
-						 }
-						?>
+						<input type="text" name="title" class="form-control" value="<?php echo $rec['title']; ?>">
 					</div>
 				</div>
 				<div class="row form-group">
 						<div class="col-md-6">
 						<label>Publish Date:</label>
-						<input type="date" name="p_date" class="form-control">
-						<?php
-					    	if ($_SESSION['error1']) {
-					    	?>
-					    		<p class="text-danger">
-					    			<?php
-					    				echo $_SESSION['error1'];
-						 	 			unset($_SESSION['error1']);
-					    			?>
-					    		</p>
-					    	<?php
-					    	}
-					    ?>
+						<input type="date" name="p_date" class="form-control" value="<?php echo $rec['p_date']; ?>">
+						
 					    </div>
 					    
 					</div>
@@ -90,24 +68,14 @@
 							?>
 							
 						</select>
-						<?php
-						 if (isset($_SESSION['error1'])) {
-						 	?>
-						 	 <p class="text-danger">
-						 	 	<?php 
-						 	 	echo $_SESSION['error2'];
-						 	 	unset($_SESSION['error2']); 
-						 	 	?>
-						 	 </p>
-						 	<?php
-						 }
-						?>
+						
 					</div>
 				</div>
 				<div class="row form-group">
 					<div class="col-md-10">
 						<label>Body</label>
 						<textarea class="form-control" name="body" rows="10">
+							<?php echo $rec['body']; ?>"
 						</textarea>
 					</div>
 				</div>
@@ -120,5 +88,3 @@
 		</div>
 	</div>
 </div>
-</body>
-</html>
