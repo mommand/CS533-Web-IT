@@ -20,7 +20,7 @@
 				</div>
 				<a href="shownews.php" class="btn btn-primary pull-right">Show News</a>
 			</div>
-			<form action="newsController.php" method="post">
+			<form action="newsController.php" method="post" enctype="multipart/form-data">
 				<div class="row form-group">
 					<?php
 					if (isset($_SESSION['success'])) {
@@ -102,6 +102,12 @@
 						 	<?php
 						 }
 						?>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-md-6">
+						<label>Upload Image</label>
+						<input type="file" name="image" class="form-control" id="image">
 					</div>
 				</div>
 				<div class="row form-group">

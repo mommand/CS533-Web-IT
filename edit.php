@@ -2,6 +2,7 @@
 include('db_connect.php');
 include('asset.php');
 mysqli_select_db($conn, 'news');
+session_start();
 $id = $_GET['id'];
 $fetch_rec = "SELECT * FROM news WHERE id = $id";
  if ($rq = mysqli_query($conn, $fetch_rec)) {
@@ -28,7 +29,9 @@ $fetch_rec = "SELECT * FROM news WHERE id = $id";
 						?>
 						 <div class="alert alert-success">
 						 	 <p class="text-center">
-						 	 	<?php echo $_SESSION['success']; ?>
+						 	 	<?php echo $_SESSION['success']; 
+						 	 	unset($_SESSION['success']);
+						 	 	?>
 						 	 </p>
 						 </div>
 						<?php
@@ -38,6 +41,7 @@ $fetch_rec = "SELECT * FROM news WHERE id = $id";
 					<div class="col-md-6">
 						<label>Title</label>
 						<input type="text" name="title" class="form-control" value="<?php echo $rec['title']; ?>">
+						<input type="hidden" name="id" value="<?php echo $id; ?>">
 					</div>
 				</div>
 				<div class="row form-group">
@@ -81,7 +85,7 @@ $fetch_rec = "SELECT * FROM news WHERE id = $id";
 				</div>
 				<div class="row form-group">
 					<div class="col-md-6">
-						 <input type="submit" name="submit" value="Publish!" class="btn btn-primary">
+						 <input type="submit" name="submit" value="Update!" class="btn btn-primary">
 					</div>
 				</div>
 			</form>

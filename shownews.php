@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>
-		
+		<?php  session_start(); ?>
 	</title>
 </head>
 <body>
@@ -14,8 +14,22 @@
 
 	</div>
 	<div class="row">
+		<?php 
+			if (isset($_SESSION['success'])) {
+			?>
+				<div class="alert alert-success">
+			 	 <p class="text-center">
+			 	 	<?php echo $_SESSION['success']; 
+			 	 	unset($_SESSION['success']);
+			 	 	?>
+			 	 </p>
+		 		</div>
+			<?php
+			}
+		?>
+		
 		<?php
-		  session_start();
+
 			if (isset($_SESSION['msg'])) {
 				?>
 					<p class="alert alert-success">
@@ -46,6 +60,7 @@
 		 		<th>ID</th>
 		 		<th>Title</th>
 		 		<th>Category</th>
+		 		<th>Image</th>
 		 		<th>Date</th>
 		 		<th colspan="3">More Action</th>
 		 	</tr>
@@ -57,6 +72,7 @@
 						<td><?php echo $i;?></td>
 						<td><?php echo $rows['title'];?></td>
 						<td><?php echo $rows['category']?></td>
+						<td><img src="<?php echo $rows['image']; ?>" width="100"></td>
 						<td><?php echo $rows['p_date'];?></td>
 						<td><a href="edit.php?id=<?php echo $rows['id'];?>" class="btn btn-warning">Edit</a></td>
 						<td><a href="" class="btn btn-primary">Details</a></td>
