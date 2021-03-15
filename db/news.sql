@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 14, 2021 at 06:07 AM
+-- Generation Time: Mar 15, 2021 at 01:13 PM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -69,6 +69,28 @@ INSERT INTO `news` (`id`, `title`, `p_date`, `category`, `image`, `body`) VALUES
 (5, 'Apple News1', '2021-03-07 00:00:00', 4, 'uploads/footbal.jpg', '							Apple News is a mobile app and news aggregator developed by Apple Inc., for its iOS, iPadOS, watchOS, and macOS operating systems. The iOS version was launched with the release of iOS 9. It is the successor to the Newsstand app included in previous versions of iOS.\r\n						\"\r\n						\"\r\n						'),
 (6, 'Map bubble', '2021-03-13 00:00:00', 2, 'uploads/Screen Shot 2021-02-23 at 3.58.04 PM.png', 'Apple News is a mobile app and news aggregator developed by Apple Inc., for its iOS, iPadOS, watchOS, and macOS operating systems. The iOS version was launched with the release of iOS 9. It is the successor to the Newsstand app included in previous versions of iOS');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `full_name` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `full_name`, `username`, `password`) VALUES
+(1, 'Ziaullah Momand', 'mommand.csf@gmail.com', 'e10adc3949ba59abbe56e057f20f883e'),
+(2, 'Momand', 'mommand.csf@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
+(3, 'ahmad Ali', 'ahmad@gmail.com', 'e10adc3949ba59abbe56e057f20f883e');
+
 --
 -- Indexes for dumped tables
 --
@@ -86,6 +108,12 @@ ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -100,6 +128,12 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `news`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
